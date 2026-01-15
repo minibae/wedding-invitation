@@ -43,8 +43,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // RSVP Form Handling
     const rsvpForm = document.getElementById('rsvp-form');
-    // Deadline: March 9, 2026 (Month is 0-indexed: 2 = March)
-    const deadline = new Date(2026, 2, 9, 23, 59, 59);
+    // Deadline: March 8, 2026 (Month is 0-indexed: 2 = March)
+    const deadline = new Date(2026, 2, 8, 23, 59, 59);
 
     if (rsvpForm) {
         // Check if deadline passed on load
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Check deadline again on submit
             if (new Date() > deadline) {
-                alert('참석 여부 전달 기한(3월 9일)이 지났습니다.\n마음만 감사히 받겠습니다.');
+                alert('참석 여부 전달 기한(3월 8일)이 지났습니다.\n마음만 감사히 받겠습니다.');
                 disableRSVPForm();
                 return;
             }
