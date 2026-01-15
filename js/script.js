@@ -23,14 +23,14 @@ document.addEventListener('DOMContentLoaded', () => {
     var mapContainer = document.getElementById('map');
     if (mapContainer && typeof kakao !== 'undefined') {
         var mapOption = {
-            center: new kakao.maps.LatLng(37.5404, 127.0709), // 까사 그랑데 센트로
+            center: new kakao.maps.LatLng(37.539171981020196, 127.0696543695598), // 까사그랑데 센트로
             level: 3 // 확대 레벨 (1-14, 숫자가 작을수록 확대)
         };
 
         var map = new kakao.maps.Map(mapContainer, mapOption);
 
         // 마커 위치 설정
-        var markerPosition = new kakao.maps.LatLng(37.5404, 127.0709);
+        var markerPosition = new kakao.maps.LatLng(37.539171981020196, 127.0696543695598);
 
         // 마커 생성
         var marker = new kakao.maps.Marker({
