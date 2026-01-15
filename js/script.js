@@ -42,48 +42,63 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // RSVP Form Handling
-    const form = document.getElementById('rsvp-form');
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
+    const rsvpForm = document.getElementById('rsvp-form');
+    // Deadline: March 9, 2026 (Month is 0-indexed: 2 = March)
+    const deadline = new Date(2026, 2, 9, 23, 59, 59);
 
-        const name = document.getElementById('name').value;
-        const attending = document.getElementById('attending').value;
-        const guests = document.getElementById('guests').value;
+    if (rsvpForm) {
+        // Check if deadline passed on load
+        if (new Date() > deadline) {
+            disableRSVPForm();
+        }
 
-        // Google Apps Script Web App URL
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbwbga3BMoZFE7vaMUrcAdHW9q99QIJ7UTYfNY-p9ztxLhgWptsCi26rnTd3z7QOApfafw/exec';
+        rsvpForm.addEventListener('submit', function (e) {
+            e.preventDefault();
 
-        // Show loading state
-        const btn = form.querySelector('button');
-        const originalText = btn.innerText;
-        btn.innerText = '전송 중... (잠시만 기다려주세요)';
-        btn.disabled = true;
+            // Check deadline again on submit
+            if (new Date() > deadline) {
+                alert('참석 여부 전달 기한(3월 9일)이 지났습니다.\n마음만 감사히 받겠습니다.');
+                disableRSVPForm();
+                return;
+            }
 
-        // Add timestamp to URL to prevent browser caching
-        const cacheBuster = scriptURL + "?t=" + new Date().getTime();
+            const name = document.getElementById('name').value;
+            const attending = document.getElementById('attending').value;
+            const guests = document.getElementById('guests').value;
 
-        fetch(cacheBuster, {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: {
-                // Simplest header to avoid CORS preflight options
-                'Content-Type': 'text/plain',
-            },
-            body: JSON.stringify({ name, attending, guests })
-        })
-            .then(() => {
-                alert(`${name}님, 참석 여부가 전달되었습니다. 감사합니다!`);
-                form.reset();
+            // Google Apps Script Web App URL
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbwbga3BMoZFE7vaMUrcAdHW9q99QIJ7UTYfNY-p9ztxLhgWptsCi26rnTd3z7QOApfafw/exec';
+
+            const btn = rsvpForm.querySelector('.btn-submit');
+            const originalText = btn.textContent;
+            btn.innerText = '전송 중... (잠시만 기다려주세요)';
+            btn.disabled = true;
+
+            // Add timestamp to URL to prevent browser caching
+            const cacheBuster = scriptURL + "?t=" + new Date().getTime();
+
+            fetch(cacheBuster, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'text/plain',
+                },
+                body: JSON.stringify({ name, attending, guests })
             })
-            .catch(error => {
-                console.error('Error!', error.message);
-                alert('오류가 발생했습니다. 다시 시도해 주세요.');
-            })
-            .finally(() => {
-                btn.innerText = originalText;
-                btn.disabled = false;
-            });
-    });
+                .then(() => {
+                    alert(`${name}님, 참석 여부가 전달되었습니다. 감사합니다!`);
+                    rsvpForm.reset();
+                })
+                .catch(error => {
+                    console.error('Error!', error.message);
+                    alert('오류가 발생했습니다. 다시 시도해 주세요.');
+                })
+                .finally(() => {
+                    btn.innerText = originalText;
+                    btn.disabled = false;
+                });
+        });
+    }
 
     // Accordion Handling
     const accordionBtns = document.querySelectorAll('.accordion-btn');
@@ -168,6 +183,21 @@ function changeLightboxImage(direction) {
 }
 
 // Keyboard navigation for lightbox
+function disableRSVPForm() {
+    const form = document.getElementById('rsvp-form');
+    if (!form) return;
+
+    const elements = form.querySelectorAll('input, select, textarea, button');
+    elements.forEach(el => el.disabled = true);
+
+    const btn = form.querySelector('.btn-submit');
+    if (btn) {
+        btn.textContent = '기한이 지났습니다';
+        btn.style.backgroundColor = '#ccc';
+        btn.style.cursor = 'not-allowed';
+    }
+}
+
 document.addEventListener('keydown', function (event) {
     const lightbox = document.getElementById('lightbox');
     if (lightbox.classList.contains('active')) {
