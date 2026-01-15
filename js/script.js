@@ -123,3 +123,60 @@ function copyText(text, message = '복사되었습니다!') {
         alert(message);
     });
 }
+
+// Lightbox functionality
+let currentLightboxIndex = 0;
+const galleryImages = document.querySelectorAll('.gallery-item');
+
+function openLightbox(index) {
+    currentLightboxIndex = index;
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const caption = document.getElementById('lightbox-caption');
+
+    lightbox.classList.add('active');
+    lightboxImg.src = galleryImages[index].src;
+    caption.textContent = galleryImages[index].alt;
+
+    // Prevent body scroll
+    document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+    const lightbox = document.getElementById('lightbox');
+    lightbox.classList.remove('active');
+
+    // Restore body scroll
+    document.body.style.overflow = 'auto';
+}
+
+function changeLightboxImage(direction) {
+    currentLightboxIndex += direction;
+
+    // Loop around
+    if (currentLightboxIndex >= galleryImages.length) {
+        currentLightboxIndex = 0;
+    } else if (currentLightboxIndex < 0) {
+        currentLightboxIndex = galleryImages.length - 1;
+    }
+
+    const lightboxImg = document.getElementById('lightbox-img');
+    const caption = document.getElementById('lightbox-caption');
+
+    lightboxImg.src = galleryImages[currentLightboxIndex].src;
+    caption.textContent = galleryImages[currentLightboxIndex].alt;
+}
+
+// Keyboard navigation for lightbox
+document.addEventListener('keydown', function (event) {
+    const lightbox = document.getElementById('lightbox');
+    if (lightbox.classList.contains('active')) {
+        if (event.key === 'Escape') {
+            closeLightbox();
+        } else if (event.key === 'ArrowLeft') {
+            changeLightboxImage(-1);
+        } else if (event.key === 'ArrowRight') {
+            changeLightboxImage(1);
+        }
+    }
+});
