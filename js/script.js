@@ -43,8 +43,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // RSVP Form Handling
     const rsvpForm = document.getElementById('rsvp-form');
-    // Deadline: March 8, 2026 (Month is 0-indexed: 2 = March)
-    const deadline = new Date(2026, 2, 8, 23, 59, 59);
+    // Deadline: March 9, 2026 00:00:00 (Month is 0-indexed: 2 = March)
+    // 3월 8일까지 입력 가능, 3월 9일 자정부터 차단
+    const deadline = new Date(2026, 2, 9, 0, 0, 0);
 
     if (rsvpForm) {
         // Check if deadline passed on load
