@@ -441,6 +441,7 @@ body {
 
 /* RSVP Section */
 #rsvp-form {
+    margin-top: 2rem;
     text-align: left;
     background: white;
     padding: 2rem;
