@@ -317,37 +317,39 @@ body {
 
 .map-buttons {
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
-    gap: 10px;
+    gap: 1rem;
+    padding: 0 1rem;
 }
 
 .btn-map {
-    display: inline-block;
-    padding: 0.7rem 1.4rem;
-    border-radius: 50px;
+    flex: 1;
+    max-width: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.8rem 0.5rem;
+    border-radius: 12px;
     text-decoration: none;
     font-size: 0.95rem;
-    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-    font-weight: 500;
-    letter-spacing: -0.02em;
-    color: white;
-    transition: opacity 0.3s;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-weight: 600;
+    color: #333;
+    background-color: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 1px solid #f0f0f0;
 }
 
 .btn-map:hover {
-    opacity: 0.9;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 }
 
-.btn-map.naver {
-    background-color: #03C75A;
-}
-
-.btn-map.kakao {
-    background-color: #FEE500;
-    color: #3b1e1e;
+.map-icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
 }
 
 /* Account Section */
