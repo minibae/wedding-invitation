@@ -1,0 +1,119 @@
+/* Transportation Guide Styles */
+.transportation-guide {
+    margin-top: 2.5rem;
+    text-align: left;
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.transport-section {
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.transport-section:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.transport-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.transport-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.transport-stop {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 0.8rem;
+    padding-left: 0.5rem;
+}
+
+.transport-details {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.transport-details li {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 0.6rem;
+    padding-left: 0.5rem;
+    line-height: 1.6;
+}
+
+/* Subway Line Badges */
+.subway-line {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: white;
+    margin-right: 0.3rem;
+}
+
+.subway-line.line-2 {
+    background-color: #00A84D;
+}
+
+.subway-line.line-7 {
+    background-color: #747F00;
+}
+
+/* Bus Badges */
+.bus-badge {
+    display: inline-block;
+    padding: 0.15rem 0.5rem;
+    border-radius: 10px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: white;
+    margin-right: 0.4rem;
+}
+
+.bus-badge.blue {
+    background-color: #0052A4;
+}
+
+.bus-badge.green {
+    background-color: #53B332;
+}
+
+.bus-badge.red {
+    background-color: #E60012;
+}
+
+.bus-badge.blue-light {
+    background-color: #53B332;
+}
+
+.bus-badge.green-light {
+    background-color: #53B332;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .transportation-guide {
+        padding: 1rem;
+    }
+
+    .transport-title {
+        font-size: 1rem;
+    }
+
+    .transport-details li {
+        font-size: 0.85rem;
+    }
+}
