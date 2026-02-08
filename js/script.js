@@ -211,3 +211,21 @@ document.addEventListener('keydown', function (event) {
         }
     }
 });
+
+// Close Floating Flower Button
+function closeFlowerButton() {
+    const container = document.getElementById('floating-flower-container');
+    if (container) {
+        container.classList.add('hidden');
+        // Store in sessionStorage so it stays hidden during this session
+        sessionStorage.setItem('flowerButtonClosed', 'true');
+    }
+}
+
+// Check if flower button was closed in this session
+document.addEventListener('DOMContentLoaded', () => {
+    const container = document.getElementById('floating-flower-container');
+    if (container && sessionStorage.getItem('flowerButtonClosed') === 'true') {
+        container.classList.add('hidden');
+    }
+});
